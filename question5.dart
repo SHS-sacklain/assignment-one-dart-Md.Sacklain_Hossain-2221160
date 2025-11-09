@@ -1,0 +1,107 @@
+// Question 5: Advanced Features & Mixins
+
+// Mixin Payable
+mixin Payable {
+  double calculateSalary(double baseSalary, double bonus) {
+    return baseSalary + bonus;
+  }
+
+  void processPayment(double amount) {
+    print('Payment processed: $amount');
+  }
+}
+
+// Mixin Reportable
+mixin Reportable {
+  String generateReport(String employeeName, String department) {
+    return 'Monthly report for $employeeName in $department department';
+  }
+}
+
+// Abstract class Employee
+abstract class Employee {
+  String name;
+  String id;
+  String department;
+
+  Employee(this.name, this.id, this.department);
+
+  String getJobTitle();
+  double getBaseSalary();
+
+  void displayInfo() {
+    print('$name (ID: $id, Department: $department)');
+  }
+}
+
+// Manager class
+class Manager extends Employee with Payable, Reportable {
+  int teamSize;
+
+  Manager(String name, String id, String department, this.teamSize)
+      : super(name, id, department);
+
+  @override
+  String getJobTitle() {
+    return 'Manager';
+  }
+
+  @override
+  double getBaseSalary() {
+    return 8000.0;
+  }
+
+  @override
+  void displayInfo() {
+    print('Manager: $name (ID: $id, Department: $department, Team Size: $teamSize)');
+  }
+}
+
+// Developer class
+class Developer extends Employee with Payable {
+  String programmingLanguage;
+
+  Developer(String name, String id, String department, this.programmingLanguage)
+      : super(name, id, department);
+
+  @override
+  String getJobTitle() {
+    return 'Senior Developer';
+  }
+
+  @override
+  double getBaseSalary() {
+    return 6000.0;
+  }
+
+  @override
+  void displayInfo() {
+    print('Developer: $name (ID: $id, Department: $department, Language: $programmingLanguage)');
+  }
+}
+
+void main() {
+  // Create a Manager
+  Manager manager = Manager('John Smith', 'M001', 'IT', 5);
+  manager.displayInfo();
+  print('Job Title: ${manager.getJobTitle()}');
+  print('Base Salary: ${manager.getBaseSalary()}');
+  
+  double managerSalary = manager.calculateSalary(manager.getBaseSalary(), 1000.0);
+  print('Calculated Salary: $managerSalary');
+  manager.processPayment(managerSalary);
+  
+  String report = manager.generateReport(manager.name, manager.department);
+  print('Report: $report');
+  print('');
+
+  // Create a Developer
+  Developer developer = Developer('Alice Johnson', 'D001', 'IT', 'Dart');
+  developer.displayInfo();
+  print('Job Title: ${developer.getJobTitle()}');
+  print('Base Salary: ${developer.getBaseSalary()}');
+  
+  double developerSalary = developer.calculateSalary(developer.getBaseSalary(), 500.0);
+  print('Calculated Salary: $developerSalary');
+  developer.processPayment(developerSalary);
+}
