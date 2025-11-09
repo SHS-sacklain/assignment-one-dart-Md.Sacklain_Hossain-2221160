@@ -1,6 +1,3 @@
-// Question 5: Advanced Features & Mixins
-
-// Mixin Payable
 mixin Payable {
   double calculateSalary(double baseSalary, double bonus) {
     return baseSalary + bonus;
@@ -11,14 +8,12 @@ mixin Payable {
   }
 }
 
-// Mixin Reportable
 mixin Reportable {
   String generateReport(String employeeName, String department) {
     return 'Monthly report for $employeeName in $department department';
   }
 }
 
-// Abstract class Employee
 abstract class Employee {
   String name;
   String id;
@@ -34,7 +29,6 @@ abstract class Employee {
   }
 }
 
-// Manager class
 class Manager extends Employee with Payable, Reportable {
   int teamSize;
 
@@ -57,7 +51,6 @@ class Manager extends Employee with Payable, Reportable {
   }
 }
 
-// Developer class
 class Developer extends Employee with Payable {
   String programmingLanguage;
 
@@ -81,7 +74,7 @@ class Developer extends Employee with Payable {
 }
 
 void main() {
-  // Create a Manager
+
   Manager manager = Manager('John Smith', 'M001', 'IT', 5);
   manager.displayInfo();
   print('Job Title: ${manager.getJobTitle()}');
@@ -95,7 +88,6 @@ void main() {
   print('Report: $report');
   print('');
 
-  // Create a Developer
   Developer developer = Developer('Alice Johnson', 'D001', 'IT', 'Dart');
   developer.displayInfo();
   print('Job Title: ${developer.getJobTitle()}');
