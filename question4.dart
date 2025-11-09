@@ -1,6 +1,4 @@
-// Question 4: Inheritance & Polymorphism
 
-// Abstract class Vehicle
 abstract class Vehicle {
   String brand;
   String model;
@@ -8,23 +6,19 @@ abstract class Vehicle {
 
   Vehicle(this.brand, this.model, this.year);
 
-  // Abstract methods
   void start();
   void stop();
 
-  // Concrete method
   void displayInfo() {
     print('Vehicle Info: $year $brand $model');
   }
 
-  // Method to calculate vehicle age
   int calculateAge() {
     int currentYear = DateTime.now().year;
     return currentYear - year;
   }
 }
 
-// Car class extending Vehicle
 class Car extends Vehicle {
   int numberOfDoors;
 
@@ -47,7 +41,6 @@ class Car extends Vehicle {
   }
 }
 
-// Motorcycle class extending Vehicle
 class Motorcycle extends Vehicle {
   bool hasWindshield;
 
@@ -71,7 +64,6 @@ class Motorcycle extends Vehicle {
 }
 
 void main() {
-  // Create a list of vehicles
   List<Vehicle> vehicles = [
     Car('Toyota', 'Camry', 2020, 4),
     Motorcycle('Honda', 'CBR', 2021, true),
@@ -79,7 +71,6 @@ void main() {
     Motorcycle('Harley-Davidson', 'Street 750', 2022, false),
   ];
 
-  // Demonstrate polymorphism
   for (Vehicle vehicle in vehicles) {
     vehicle.displayInfo();
     vehicle.start();
